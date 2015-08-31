@@ -1,0 +1,50 @@
+.flexContainer {
+  max-width: 100%;
+  width: 100%;
+  border-top: 1px solid #3b91ad;
+  border-left: 1px solid #3b91ad;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.flexColumn {
+  display: flex;
+  width: 14.2857142857%;
+  border-bottom: 1px solid #3b91ad;
+  border-right: 1px solid #3b91ad;
+  flex: 0 1 auto;
+  justify-content: center;
+}
+.day.inactive {
+  background-color: #f8f8f8;
+  color: #ccc;
+}
+.day .inner-grid {
+  width: 100%;
+  position: relative;
+}
+.day .event-slot {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+}
+.day .event-slot.event {
+  background: #3b91ad;
+  color: #3b91ad;
+}
+.day .event-slot.event-has-label {
+  color: #fff;
+}
+.day .event.event-first-day {
+  margin-left: 1rem;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+.day .event.event-last-day {
+  margin-right: 1rem;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+.day .date {
+  padding: 0.5rem 1rem;
+  text-align: right;
+}

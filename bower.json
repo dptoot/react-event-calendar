@@ -1,0 +1,29 @@
+{
+  "name": "react-event-calendar",
+  "version": "0.0.0",
+  "description": "react-event-calendar",
+  "main": "dist/react-event-calendar.min.js",
+  "homepage": "https://github.com/dptoot/react-event-calendar",
+  "authors": [
+    "James Lewis"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}
