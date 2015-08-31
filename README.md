@@ -1,6 +1,6 @@
 # react-event-calendar
 
-__COMPONENT DESCRIPTION GOES HERE__
+Coming Soon... a much better description than this!
 
 
 ## Demo & Examples
