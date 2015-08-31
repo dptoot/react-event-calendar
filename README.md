@@ -33,9 +33,22 @@ npm install react-event-calendar --save
 __EXPLAIN USAGE HERE__
 
 ```
-var ReactEventCalendar = require('react-event-calendar');
+const ReactEventCalendar = require('react-event-calendar');
 
-<ReactEventCalendar>Example</ReactEventCalendar>
+const events = [
+    {
+        start: '2015-07-20',
+        end: '2015-07-02',
+        title: 'test event',
+        description: 'This is a test description of an event',
+    },
+];
+
+<ReactEventCalendar 
+    events={events}
+    month={7}
+    year={2015}
+    events={events} />
 ```
 
 ### Properties
@@ -44,7 +57,7 @@ var ReactEventCalendar = require('react-event-calendar');
 
 ### Notes
 
-__ADDITIONAL USAGE NOTES__
+Requires Array.prototype.find and Arra.prototype.some.  Please include ES6 Array polyfill for unsupported browsers.
 
 
 ## Development (`src`, `lib` and the build process)
