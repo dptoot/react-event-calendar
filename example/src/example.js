@@ -37,7 +37,7 @@ const events = [
 ];
 
 var App = React.createClass({
-	render () {
+	render() {
 		return (
 			<div>
 				<EventCalendar
@@ -49,7 +49,7 @@ var App = React.createClass({
                     />
 			</div>
 		);
-	}
+	},
 });
 
 React.render(<App />, document.getElementById('app'));
