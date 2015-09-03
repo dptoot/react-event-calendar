@@ -29,10 +29,6 @@ class Schedule extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            days: [],
-        };
-
         // Bind methods
         this.getCalendarDays = this.getCalendarDays.bind(this);
         this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
@@ -41,9 +37,6 @@ class Schedule extends React.Component {
 
     componentWillMount() {
         this.calendar = new Calendar({siblingMonths: true, });
-        this.setState({
-            days: this.getDaysWithEvents(),
-        });
     }
 
     getCalendarDays() {
@@ -186,7 +179,7 @@ class Schedule extends React.Component {
 
     renderCalendarDays() {
 
-        return this.state.days.map((day) => {
+        return this.getDaysWithEvents().map((day) => {
 
             const dayClasses = classnames({
                 'flexColumn': true,
