@@ -3,16 +3,28 @@
   width: 100%;
   border-top: 1px solid #3b91ad;
   border-left: 1px solid #3b91ad;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  flex-wrap: wrap;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .flexColumn {
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   width: 14.2857142857%;
   border-bottom: 1px solid #3b91ad;
   border-right: 1px solid #3b91ad;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
   flex: 0 1 auto;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 .day.inactive {

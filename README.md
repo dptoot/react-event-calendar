@@ -1,6 +1,6 @@
 # react-event-calendar
 
-__COMPONENT DESCRIPTION GOES HERE__
+Coming Soon... a much better description than this!
 
 
 ## Demo & Examples
@@ -30,7 +30,7 @@ npm install react-event-calendar --save
 
 ## Usage
 
-__EXPLAIN USAGE HERE__
+Use this component to display a month view of a calendar with supplied event duration indicators.
 
 ```
 const ReactEventCalendar = require('react-event-calendar');
@@ -53,7 +53,9 @@ const events = [
 
 ### Properties
 
-* __DOCUMENT PROPERTIES HERE__
+* ```events```:```Array``` Array of event objects to be represented on the calendar
+* ```month```: ```Integer``` Selected Month to display
+* ```year```: ```Integer``` Selected Year to display
 
 ### Notes
 
