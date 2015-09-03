@@ -149,7 +149,7 @@ class Schedule extends React.Component {
         });
     }
 
-    renderEvent(eventData, day) {
+    renderEvent(eventData, day, index) {
         const showLabel = eventData.isFirstDay || day.weekDay === 0;
 
         const eventClasses = classnames({
@@ -160,11 +160,15 @@ class Schedule extends React.Component {
             'event-has-label': showLabel,
         });
 
+        // Generate a dynamic ref
+        const ref = [day.month, day.day, index].join('_');
 
         return (
             <div className={eventClasses}
-                onClick={this.props.onEventClick}
-                onMouseOver={this.props.onEventMouseOver}>
+                ref={ref}
+                onClick={this.props.onEventClick.bind(null, ref, eventData)}
+                onMouseOver={this.props.onEventMouseOver.bind(null, ref, eventData)}
+                onMouseOut={this.props.onEventMouseOut.bind(null, ref, eventData)}>
                 {eventData.title}
             </div>
         );
@@ -172,8 +176,8 @@ class Schedule extends React.Component {
 
     renderEvents(day) {
         const placeholder = <div className="event-slot">&nbsp;</div>;
-        return day.eventSlots.map((eventData) => {
-            return (eventData) ? this.renderEvent(eventData, day) : placeholder;
+        return day.eventSlots.map((eventData, index) => {
+            return (eventData) ? this.renderEvent(eventData, day, index) : placeholder;
         });
     }
 
