@@ -95,7 +95,7 @@ class App extends React.Component {
     handleEventMouseOver(ref, data) {
         this.setState({
             showPopover: true,
-            popoverTarget: props => React.findDOMNode(this.refs.eventCalendar.refs[ref]),
+            popoverTarget: () => React.findDOMNode(this.refs.eventCalendar.refs[ref]),
             popoverTitle: data.title,
             popoverContent: data.description,
         });
@@ -124,17 +124,17 @@ class App extends React.Component {
 	render() {
 
         const styles = {
-            position: "relative"
-        }
+            position: 'relative',
+        };
 
 		return (
             <div style={styles}>
-            <Overlay 
+            <Overlay
                 show={this.state.showPopover}
-                rootClose={true} 
-                onHide = {()=>this.setState({showPopover: false})}
-                placement="top" 
-                container={this} 
+                rootClose={true}
+                onHide = {()=>this.setState({showPopover: false, })}
+                placement="top"
+                container={this}
                 target={this.state.popoverTarget}>
               <Popover title={this.state.popoverTitle}>{this.state.popoverContent}</Popover>
             </Overlay>

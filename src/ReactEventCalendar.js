@@ -33,10 +33,24 @@ class Schedule extends React.Component {
         this.getCalendarDays = this.getCalendarDays.bind(this);
         this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
         this.getEventMeta = this.getEventMeta.bind(this);
+        this.getToday = this.getToday.bind(this);
+
+        this.state = {
+            today: this.getToday(),
+        };
     }
 
     componentWillMount() {
         this.calendar = new Calendar({siblingMonths: true, });
+    }
+
+    getToday() {
+        var today = new Date();
+        return {
+            day: today.getDate(),
+            month: today.getMonth(),
+            year: today.getFullYear(),
+        };
     }
 
     getCalendarDays() {
@@ -189,6 +203,7 @@ class Schedule extends React.Component {
                 'flexColumn': true,
                 'day': true,
                 'inactive': day.siblingMonth,
+                'today': Calendar.interval(day, this.state.today) === 1,
             });
 
             return (
