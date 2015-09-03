@@ -134,7 +134,7 @@ var App = (function (_React$Component) {
 
             this.setState({
                 showPopover: true,
-                popoverTarget: function popoverTarget(props) {
+                popoverTarget: function popoverTarget() {
                     return React.findDOMNode(_this.refs.eventCalendar.refs[ref]);
                 },
                 popoverTitle: data.title,
@@ -171,7 +171,7 @@ var App = (function (_React$Component) {
             var _this2 = this;
 
             var styles = {
-                position: "relative"
+                position: 'relative'
             };
 
             return React.createElement(

@@ -54,12 +54,27 @@ var Schedule = (function (_React$Component) {
         this.getCalendarDays = this.getCalendarDays.bind(this);
         this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
         this.getEventMeta = this.getEventMeta.bind(this);
+        this.getToday = this.getToday.bind(this);
+
+        this.state = {
+            today: this.getToday()
+        };
     }
 
     _createClass(Schedule, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.calendar = new _calendarBase.Calendar({ siblingMonths: true });
+        }
+    }, {
+        key: 'getToday',
+        value: function getToday() {
+            var today = new Date();
+            return {
+                day: today.getDate(),
+                month: today.getMonth(),
+                year: today.getFullYear()
+            };
         }
     }, {
         key: 'getCalendarDays',
@@ -228,7 +243,8 @@ var Schedule = (function (_React$Component) {
                 var dayClasses = (0, _classnames2['default'])({
                     'flexColumn': true,
                     'day': true,
-                    'inactive': day.siblingMonth
+                    'inactive': day.siblingMonth,
+                    'today': _calendarBase.Calendar.interval(day, _this3.state.today) === 1
                 });
 
                 return _react2['default'].createElement(
