@@ -5484,9 +5484,10 @@ module.exports = function(it){
 var toObject = require('./$.to-object')
   , IObject  = require('./$.iobject')
   , enumKeys = require('./$.enum-keys');
-/* eslint-disable no-unused-vars */
-module.exports = Object.assign || function assign(target, source){
-/* eslint-enable no-unused-vars */
+
+module.exports = require('./$.fails')(function(){
+  return Symbol() in Object.assign({}); // Object.assign available and Symbol is native
+}) ? function assign(target, source){   // eslint-disable-line no-unused-vars
   var T = toObject(target)
     , l = arguments.length
     , i = 1;
@@ -5499,8 +5500,8 @@ module.exports = Object.assign || function assign(target, source){
     while(length > j)T[key = keys[j++]] = S[key];
   }
   return T;
-};
-},{"./$.enum-keys":42,"./$.iobject":45,"./$.to-object":50}],37:[function(require,module,exports){
+} : Object.assign;
+},{"./$.enum-keys":42,"./$.fails":43,"./$.iobject":45,"./$.to-object":50}],37:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = function(it){
@@ -5682,7 +5683,8 @@ module.exports = function(it){
 },{"./$.defined":41}],51:[function(require,module,exports){
 // 19.1.3.1 Object.assign(target, source)
 var $def = require('./$.def');
-$def($def.S, 'Object', {assign: require('./$.assign')});
+
+$def($def.S + $def.F, 'Object', {assign: require('./$.assign')});
 },{"./$.assign":36,"./$.def":40}],52:[function(require,module,exports){
 // 19.1.2.14 Object.keys(O)
 var toObject = require('./$.to-object');
