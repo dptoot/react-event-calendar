@@ -49,14 +49,20 @@ const events = [
 ```
 
 ### Properties
+Property | Type | Description
+---------|------|------------
 
-* ```events```:```Array``` Array of event objects to be represented on the calendar
-* ```month```: ```Integer``` Selected Month to display
-* ```year```: ```Integer``` Selected Year to display
+events | array | Array of event objects to be represented on the calendar
+month | int | Selected Month to display
+year | int | Selected Year to display
+onEventClick | func | Callback for user click on any event node
+onEventMouseOver | func | Callback for user mouse over on any event node
+onEventMouseOut | func | Callback for user mouse out on any event node
 
 ### Notes
 
-Requires Array.prototype.find and Arra.prototype.some.  Please include ES6 Array polyfill for unsupported browsers.
+Requires Array.prototype.find and Array.prototype.some.  
+Please include ES6 Array polyfill for unsupported browsers.
 
 
 ## Development (`src`, `lib` and the build process)
