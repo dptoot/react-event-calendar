@@ -1,7 +1,5 @@
 # react-event-calendar
-
-Coming Soon... a much better description than this!
-
+A Calendar component that will display supplied events in a given month. 
 
 ## Demo & Examples
 
@@ -33,7 +31,7 @@ npm install react-event-calendar --save
 Use this component to display a month view of a calendar with supplied event duration indicators.
 
 ```
-const ReactEventCalendar = require('react-event-calendar');
+const EventCalendar = require('react-event-calendar');
 
 const events = [
     {
@@ -44,8 +42,7 @@ const events = [
     },
 ];
 
-<ReactEventCalendar 
-    events={events}
+<EventCalendar 
     month={7}
     year={2015}
     events={events} />
