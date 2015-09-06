@@ -31,13 +31,16 @@
   background-color: #f8f8f8;
   color: #ccc;
 }
+.day.today {
+  background-color: #fcf8e3;
+}
 .day .inner-grid {
   width: 100%;
   position: relative;
 }
 .day .event-slot {
-  margin: 1rem 0;
-  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  padding: 0.25rem 0.5rem;
 }
 .day .event-slot.event {
   background: #3b91ad;
@@ -47,16 +50,16 @@
   color: #fff;
 }
 .day .event.event-first-day {
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
 }
 .day .event.event-last-day {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }
 .day .date {
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   text-align: right;
 }
