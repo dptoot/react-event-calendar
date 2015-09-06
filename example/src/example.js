@@ -107,7 +107,7 @@ class App extends React.Component {
         });
      }
 
-    handleEventClick() {
+    handleEventClick(ref, data) {
         alert('Maybe you want to go somewhere!')
     }
 

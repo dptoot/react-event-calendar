@@ -40,28 +40,35 @@ const events = [
         title: 'test event',
         description: 'This is a test description of an event',
     },
+    {
+        start: '2015-07-19',
+        end: '2015-07-25',
+        title: 'test event',
+        description: 'This is a test description of an event',
+        data: 'you can add what ever random data you may want to use later',
+    },
 ];
 
 <EventCalendar 
     month={7}
     year={2015}
-    events={events} />
+    events={events} 
+    onEventClick={(ref, eventData) => console.log(eventData)/>
 ```
 
 ### Properties
-Property | Type | Description
----------|------|------------
 
-events | array | Array of event objects to be represented on the calendar
-month | int | Selected Month to display
-year | int | Selected Year to display
-onEventClick | func | Callback for user click on any event node
-onEventMouseOver | func | Callback for user mouse over on any event node
-onEventMouseOut | func | Callback for user mouse out on any event node
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| events | array | Array of event objects to be represented on the calendar |
+| month | int | Selected Month to display |
+| year | int | Selected Year to display |
+| onEventClick | func | Callback for user click on any event node |
+| onEventMouseOver | func | Callback for user mouse over on any event node |
+| onEventMouseOut | func | Callback for user mouse out on any event node |
 
-### Notes
-
-Requires Array.prototype.find and Array.prototype.some.  
+### Polyfills Required
+Requires Array.prototype.find() and Array.prototype.some().  
 Please include ES6 Array polyfill for unsupported browsers.
 
 
