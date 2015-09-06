@@ -150,7 +150,7 @@ var App = (function (_React$Component) {
         }
     }, {
         key: 'handleEventClick',
-        value: function handleEventClick() {
+        value: function handleEventClick(ref, data) {
             alert('Maybe you want to go somewhere!');
         }
     }, {
