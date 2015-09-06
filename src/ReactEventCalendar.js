@@ -148,7 +148,8 @@ class Schedule extends React.Component {
         const dateArray = date.split('-');
         return {
             year: dateArray[0],
-            month: dateArray[1],
+            // Subtract 1 from month to allow for human declared months
+            month: dateArray[1] - 1,
             day: dateArray[2],
         };
     }
