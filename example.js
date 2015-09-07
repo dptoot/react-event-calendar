@@ -98,7 +98,7 @@ var App = (function (_React$Component) {
         this.handleEventMouseOut = this.handleEventMouseOut.bind(this);
 
         this.state = {
-            moment: (0, _moment2['default'])(),
+            moment: (0, _moment2['default'])('2015-07-01'),
             showPopover: false,
             popoverTitle: null,
             popoverContent: null,
@@ -190,7 +190,7 @@ var App = (function (_React$Component) {
                         target: this.state.popoverTarget },
                     React.createElement(
                         _reactBootstrapLibPopOver2['default'],
-                        { title: this.state.popoverTitle },
+                        { id: 'event', title: this.state.popoverTitle },
                         this.state.popoverContent
                     )
                 ),
@@ -245,7 +245,6 @@ var App = (function (_React$Component) {
                             onEventClick: this.handleEventClick,
                             onEventMouseOver: this.handleEventMouseOver,
                             onEventMouseOut: this.handleEventMouseOut
-
                         })
                     )
                 )
