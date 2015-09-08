@@ -39,15 +39,27 @@
   position: relative;
 }
 .day .event-slot {
+  position: relative;
   margin: 0.5rem 0;
-  padding: 0.25rem 0.5rem;
+  min-height: 28px;
+  font-size: 14px;
 }
 .day .event-slot.event {
   background: #3b91ad;
   color: #3b91ad;
+  white-space: nowrap;
+  text-indent: -10000px;
+  cursor: pointer;
 }
-.day .event-slot.event-has-label {
+.day .event-slot .event-title {
+  position: absolute;
+  top: 3.5px;
+  left: 0.5rem;
+  z-index: 100;
   color: #fff;
+  z-index: 1;
+  overflow: visible;
+  text-indent: 0;
 }
 .day .event.event-first-day {
   margin-left: 0.5rem;
