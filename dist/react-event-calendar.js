@@ -51,23 +51,31 @@ var Schedule = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(Schedule.prototype), 'constructor', this).call(this, props);
 
-        this.state = {
-            days: []
-        };
-
         // Bind methods
         this.getCalendarDays = this.getCalendarDays.bind(this);
         this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
         this.getEventMeta = this.getEventMeta.bind(this);
+        this.getToday = this.getToday.bind(this);
+
+        this.state = {
+            today: this.getToday()
+        };
     }
 
     _createClass(Schedule, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.calendar = new _calendarBase.Calendar({ siblingMonths: true });
-            this.setState({
-                days: this.getDaysWithEvents()
-            });
+        }
+    }, {
+        key: 'getToday',
+        value: function getToday() {
+            var today = new Date();
+            return {
+                day: today.getDate(),
+                month: today.getMonth(),
+                year: today.getFullYear()
+            };
         }
     }, {
         key: 'getCalendarDays',
@@ -171,7 +179,8 @@ var Schedule = (function (_React$Component) {
             var dateArray = date.split('-');
             return {
                 year: dateArray[0],
-                month: dateArray[1],
+                // Subtract 1 from month to allow for human declared months
+                month: dateArray[1] - 1,
                 day: dateArray[2]
             };
         }
@@ -188,7 +197,7 @@ var Schedule = (function (_React$Component) {
         }
     }, {
         key: 'renderEvent',
-        value: function renderEvent(eventData, day) {
+        value: function renderEvent(eventData, day, index) {
             var showLabel = eventData.isFirstDay || day.weekDay === 0;
 
             var eventClasses = (0, _classnames2['default'])({
@@ -199,11 +208,16 @@ var Schedule = (function (_React$Component) {
                 'event-has-label': showLabel
             });
 
+            // Generate a dynamic ref
+            var ref = [day.month, day.day, index].join('_');
+
             return _react2['default'].createElement(
                 'div',
                 { className: eventClasses,
-                    onClick: this.props.onEventClick,
-                    onMouseOver: this.props.onEventMouseOver },
+                    ref: ref,
+                    onClick: this.props.onEventClick.bind(null, ref, eventData),
+                    onMouseOver: this.props.onEventMouseOver.bind(null, ref, eventData),
+                    onMouseOut: this.props.onEventMouseOut.bind(null, ref, eventData) },
                 eventData.title
             );
         }
@@ -217,8 +231,8 @@ var Schedule = (function (_React$Component) {
                 { className: 'event-slot' },
                 ' '
             );
-            return day.eventSlots.map(function (eventData) {
-                return eventData ? _this2.renderEvent(eventData, day) : placeholder;
+            return day.eventSlots.map(function (eventData, index) {
+                return eventData ? _this2.renderEvent(eventData, day, index) : placeholder;
             });
         }
     }, {
@@ -226,12 +240,13 @@ var Schedule = (function (_React$Component) {
         value: function renderCalendarDays() {
             var _this3 = this;
 
-            return this.state.days.map(function (day) {
+            return this.getDaysWithEvents().map(function (day) {
 
                 var dayClasses = (0, _classnames2['default'])({
                     'flexColumn': true,
                     'day': true,
-                    'inactive': day.siblingMonth
+                    'inactive': day.siblingMonth,
+                    'today': _calendarBase.Calendar.interval(day, _this3.state.today) === 1
                 });
 
                 return _react2['default'].createElement(

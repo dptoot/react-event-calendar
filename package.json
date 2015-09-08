@@ -1,6 +1,6 @@
 {
   "name": "react-event-calendar",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "react-event-calendar",
   "main": "lib/ReactEventCalendar.js",
   "author": "James Lewis",
