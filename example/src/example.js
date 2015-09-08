@@ -34,13 +34,13 @@ const events = [
     {
         start: '2015-07-07',
         end: '2015-07-13',
-        title: '2 weeks',
+        title: '2 week event with a nice long title ',
         description: 'This is a test description of an event',
     },
     {
         start: '2015-06-15',
         end: '2015-08-15',
-        title: 'multi-month ',
+        title: 'This is a multi-month event ',
         description: 'This is a test description of an event',
     },
     {

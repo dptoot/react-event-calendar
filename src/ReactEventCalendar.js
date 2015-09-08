@@ -189,6 +189,8 @@ class EventCalendar extends React.Component {
 
         // Generate a dynamic ref
         const ref = [day.month, day.day, index].join('_');
+        const title = showLabel ? eventData.title : '';
+
 
         return (
             <div className={eventClasses}
@@ -197,7 +199,9 @@ class EventCalendar extends React.Component {
                 onClick={this.props.onEventClick.bind(null, ref, eventData)}
                 onMouseOver={this.props.onEventMouseOver.bind(null, ref, eventData)}
                 onMouseOut={this.props.onEventMouseOut.bind(null, ref, eventData)}>
-                {eventData.title}
+                <div className="event-title">
+                    {title}    
+                </div>
             </div>
         );
     }
