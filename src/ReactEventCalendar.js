@@ -1,7 +1,6 @@
 import React from 'react';
 import {Calendar} from 'calendar-base';
 import classnames from 'classnames';
-// require('babel/polyfill');
 
 const propTypes = {
     events: React.PropTypes.array,
@@ -24,7 +23,7 @@ const defaultProps = {
     events: [],
 };
 
-class Schedule extends React.Component {
+class EventCalendar extends React.Component {
 
     constructor(props) {
         super(props);
@@ -55,7 +54,8 @@ class Schedule extends React.Component {
 
     getCalendarDays() {
         return this.calendar.getCalendar(this.props.year, this.props.month).map((day) => {
-            day.eventSlots = Array(3).fill(false);
+            // Could be done with fill but why require the polyfill
+            day.eventSlots = [false,false,false,false,false,false,false,false,false,false,];
             return day;
         });
     }
@@ -154,13 +154,25 @@ class Schedule extends React.Component {
         };
     }
 
+    getLastIndexOfEvent(slots) {
+
+        const lastIndexOfEvent = slots.map((slot, index) => {
+            return slot !== false ? index : false;
+        }).filter((element) => {
+            return element;
+        }).pop();
+
+        return lastIndexOfEvent < 3 || lastIndexOfEvent === undefined ? 2 : lastIndexOfEvent;
+    }
+
     renderDaysOfTheWeek() {
-        return this.props.daysOfTheWeek.map((element) => {
+        return this.props.daysOfTheWeek.map((element, index) => {
             return (
-                <div className="flexColumn">
+                <div className="flexColumn"
+                    key={index}>
                     {element}
                 </div>
-                );
+            );
         });
     }
 
@@ -180,6 +192,7 @@ class Schedule extends React.Component {
 
         return (
             <div className={eventClasses}
+                key={ref}
                 ref={ref}
                 onClick={this.props.onEventClick.bind(null, ref, eventData)}
                 onMouseOver={this.props.onEventMouseOver.bind(null, ref, eventData)}
@@ -191,14 +204,22 @@ class Schedule extends React.Component {
 
     renderEvents(day) {
         const placeholder = <div className="event-slot">&nbsp;</div>;
-        return day.eventSlots.map((eventData, index) => {
-            return (eventData) ? this.renderEvent(eventData, day, index) : placeholder;
+        // Trim excess slots
+        const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1)
+
+        return eventSlots.map((eventData, index) => {
+           
+           return (
+                <div key={index}>
+                    {(eventData) ? this.renderEvent(eventData, day, index) : placeholder}
+                </div>
+            );
         });
     }
 
     renderCalendarDays() {
 
-        return this.getDaysWithEvents().map((day) => {
+        return this.getDaysWithEvents().map((day, index) => {
 
             const dayClasses = classnames({
                 'flexColumn': true,
@@ -208,7 +229,8 @@ class Schedule extends React.Component {
             });
 
             return (
-                <div className={dayClasses}>
+                <div key={index} 
+                     className={dayClasses}>
                     <div className="inner-grid">
                         <div className="date">{day.day}</div>
                         {this.renderEvents(day)}
@@ -228,7 +250,7 @@ class Schedule extends React.Component {
     }
 }
 
-Schedule.propTypes = propTypes;
-Schedule.defaultProps = defaultProps;
+EventCalendar.propTypes = propTypes;
+EventCalendar.defaultProps = defaultProps;
 
-export default Schedule;
+export default EventCalendar;

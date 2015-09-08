@@ -44,9 +44,15 @@ const events = [
         description: 'This is a test description of an event',
     },
     {
+        start: '2015-07-7',
+        end: '2015-07-10',
+        title: '3rd Event',
+        description: 'This is a test description of an event',
+    },
+    {
         start: '2015-07-10',
         end: '2015-07-12',
-        title: '3 events',
+        title: '4th Event',
         description: 'This is a test description of an event',
     },
 ];
@@ -66,7 +72,7 @@ class App extends React.Component {
         this.handleEventMouseOut = this.handleEventMouseOut.bind(this);
 
         this.state = {
-            moment: moment(),
+            moment: moment('2015-07-01'),
             showPopover: false,
             popoverTitle: null,
             popoverContent: null,
@@ -136,7 +142,7 @@ class App extends React.Component {
                 placement="top"
                 container={this}
                 target={this.state.popoverTarget}>
-              <Popover title={this.state.popoverTitle}>{this.state.popoverContent}</Popover>
+              <Popover id="event" title={this.state.popoverTitle}>{this.state.popoverContent}</Popover>
             </Overlay>
                 <Row>
                     <Col xs={6}>
@@ -147,7 +153,7 @@ class App extends React.Component {
                         </ButtonToolbar>
                     </Col>
                      <Col xs={6}>
-                        <div className='pull-right h2'>{this.getHumanDate()}</div>
+                        <div className="pull-right h2">{this.getHumanDate()}</div>
                      </Col>
                 </Row>
                 <br />
@@ -161,7 +167,6 @@ class App extends React.Component {
                             onEventClick={this.handleEventClick}
                             onEventMouseOver={this.handleEventMouseOver}
                             onEventMouseOut={this.handleEventMouseOut}
-
                             />
                     </Col>
                 </Row>
