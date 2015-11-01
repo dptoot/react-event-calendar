@@ -1,6 +1,6 @@
-var React = require('react');
-var EventCalendar = require('react-event-calendar');
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import EventCalendar from 'react-event-calendar';
 import moment from 'moment';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
@@ -98,10 +98,10 @@ class App extends React.Component {
         });
     }
 
-    handleEventMouseOver(ref, data) {
+    handleEventMouseOver(target, data) {
         this.setState({
             showPopover: true,
-            popoverTarget: () => React.findDOMNode(this.refs.eventCalendar.refs[ref]),
+            popoverTarget: () => ReactDOM.findDOMNode(target),
             popoverTitle: data.title,
             popoverContent: data.description,
         });
@@ -160,7 +160,7 @@ class App extends React.Component {
                 <Row>
                     <Col xs={12}>
                         <EventCalendar
-                            ref="eventCalendar"
+                            ref={(component) => this.eventCalendar = component}
                             month={this.state.moment.month()}
                             year={this.state.moment.year()}
                             events={events}
@@ -177,4 +177,4 @@ class App extends React.Component {
 
 export default App;
 
-React.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

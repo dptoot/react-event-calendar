@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {Calendar} from 'calendar-base';
 import classnames from 'classnames';
 
@@ -33,6 +34,8 @@ class EventCalendar extends React.Component {
         this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
         this.getEventMeta = this.getEventMeta.bind(this);
         this.getToday = this.getToday.bind(this);
+
+        this._eventTargets = {};
 
         this.state = {
             today: this.getToday(),
@@ -187,18 +190,18 @@ class EventCalendar extends React.Component {
             'event-has-label': showLabel,
         });
 
-        // Generate a dynamic ref
-        const ref = [day.month, day.day, index].join('_');
+        // Generate a dynamic identifier
+        const UID = [day.month, day.day, index].join('_');
         const title = showLabel ? eventData.title : '';
 
 
         return (
             <div className={eventClasses}
-                key={ref}
-                ref={ref}
-                onClick={this.props.onEventClick.bind(null, ref, eventData)}
-                onMouseOver={this.props.onEventMouseOver.bind(null, ref, eventData)}
-                onMouseOut={this.props.onEventMouseOut.bind(null, ref, eventData)}>
+                key={UID}
+                ref={(component) => this._eventTargets[UID] = component}
+                onClick={this.props.onEventClick.bind(null, this._eventTargets[UID], eventData)}
+                onMouseOver={this.props.onEventMouseOver.bind(null, this._eventTargets[UID], eventData)}
+                onMouseOut={this.props.onEventMouseOut.bind(null, this._eventTargets[UID], eventData)}>
                 <div className="event-title">
                     {title}    
                 </div>

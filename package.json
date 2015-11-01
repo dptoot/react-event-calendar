@@ -22,9 +22,10 @@
     "eslint-plugin-react": "^2.5.0",
     "gulp": "^3.9.0",
     "moment": "^2.10.6",
-    "react": ">=0.13.3",
-    "react-bootstrap": "^0.25.1",
-    "react-component-gulp-tasks": "^0.7.0"
+    "react": "^0.14.1",
+    "react-bootstrap": "^0.27.3",
+    "react-component-gulp-tasks": "^0.7.0",
+    "react-dom": "^0.14.1"
   },
   "peerDependencies": {
     "react": ">=0.13.3"
@@ -45,6 +46,6 @@
   "keywords": [
     "react",
     "react-component"
-  ], 
+  ],
   "license": "MIT"
 }
