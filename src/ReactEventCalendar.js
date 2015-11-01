@@ -57,7 +57,7 @@ class EventCalendar extends React.Component {
 
     getCalendarDays() {
         return this.calendar.getCalendar(this.props.year, this.props.month).map((day) => {
-            // Could be done with fill but why require the polyfill
+            // Could be done with Array.fill but why require the polyfill just for that
             day.eventSlots = [false,false,false,false,false,false,false,false,false,false,];
             return day;
         });
@@ -210,7 +210,7 @@ class EventCalendar extends React.Component {
     }
 
     renderEvents(day) {
-        const placeholder = <div className="event-slot">&nbsp;</div>;
+        const placeholder = <div className="event-slot"></div>;
         // Trim excess slots
         const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1)
 
