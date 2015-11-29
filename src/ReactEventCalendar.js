@@ -4,6 +4,7 @@ import {Calendar} from 'calendar-base';
 import classnames from 'classnames';
 
 const propTypes = {
+    maxSlots: React.PropTypes.number,
     events: React.PropTypes.array,
     month: React.PropTypes.number.isRequired,
     year: React.PropTypes.number.isRequired,
@@ -12,6 +13,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+	maxSlots: 10,
     daysOfTheWeek: [
         'Sunday',
         'Monday',
@@ -56,9 +58,12 @@ class EventCalendar extends React.Component {
     }
 
     getCalendarDays() {
+        let maxSlots = this.props.maxSlots || defaultProps.maxSlots;
         return this.calendar.getCalendar(this.props.year, this.props.month).map((day) => {
-            // Could be done with Array.fill but why require the polyfill just for that
-            day.eventSlots = [false,false,false,false,false,false,false,false,false,false,];
+            day.eventSlots = []
+            for(var i = 0; i < maxSlots; ++i) {
+                day.eventSlots.push(false);
+            }
             return day;
         });
     }
