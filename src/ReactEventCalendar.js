@@ -199,9 +199,9 @@ class EventCalendar extends React.Component {
             <div className={eventClasses}
                 key={UID}
                 ref={(component) => this._eventTargets[UID] = component}
-                onClick={this.props.onEventClick.bind(null, this._eventTargets[UID], eventData, day)}
-                onMouseOver={this.props.onEventMouseOver.bind(null, this._eventTargets[UID], eventData, day)}
-                onMouseOut={this.props.onEventMouseOut.bind(null, this._eventTargets[UID], eventData, day)}>
+                onClick={() => { this.props.onEventClick(this._eventTargets[UID], eventData, day); }}
+                onMouseOver={() => { this.props.onEventMouseOver(this._eventTargets[UID], eventData, day); }}
+                onMouseOut={() => { this.props.onEventMouseOut(this._eventTargets[UID], eventData, day); }}>
                 <div className="event-title">
                     {title}    
                 </div>
