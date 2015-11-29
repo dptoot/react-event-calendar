@@ -9,6 +9,7 @@ const propTypes = {
     year: React.PropTypes.number.isRequired,
     onEventClick: React.PropTypes.func,
     onEventMouseOver: React.PropTypes.func,
+    addEventClass: React.PropTypes.func
 };
 
 const defaultProps = {
@@ -188,7 +189,7 @@ class EventCalendar extends React.Component {
             'event-first-day': eventData.isFirstDay,
             'event-last-day': eventData.isLastDay,
             'event-has-label': showLabel,
-        });
+        }, this.props.addEventClass? this.props.addEventClass(eventData, day) : {});
 
         // Generate a dynamic identifier
         const UID = [day.month, day.day, index].join('_');
