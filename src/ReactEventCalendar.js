@@ -81,7 +81,11 @@ class EventCalendar extends React.Component {
         if (eventStartInView || eventEndInView) {
              // Asserts event's first or last day is visible in this month view
             eventMeta.isVisibleInView = true;
-        } else if (eventStart.month < this.props.month && eventEnd.month > this.props.month) {
+        } else if (
+            (eventStart.year < this.props.year) ||
+            (eventEnd.year > this.props.year) ||
+            (eventStart.year === this.props.year && eventStart.month < this.props.month && eventEnd.month > this.props.month)
+        ) {
             // Asserts at least part of month is
             eventMeta.isVisibleInView = true;
         }
