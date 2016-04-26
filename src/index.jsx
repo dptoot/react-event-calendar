@@ -1,28 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Calendar} from 'calendar-base';
 import classnames from 'classnames';
-
-const propTypes = {
-    events: React.PropTypes.array,
-    month: React.PropTypes.number.isRequired,
-    year: React.PropTypes.number.isRequired,
-    onEventClick: React.PropTypes.func,
-    onEventMouseOver: React.PropTypes.func,
-};
-
-const defaultProps = {
-    daysOfTheWeek: [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-    ],
-    events: [],
-};
 
 class EventCalendar extends React.Component {
 
@@ -40,10 +18,9 @@ class EventCalendar extends React.Component {
         this.state = {
             today: this.getToday(),
         };
-    }
-
-    componentWillMount() {
+        
         this.calendar = new Calendar({siblingMonths: true, });
+
     }
 
     getToday() {
@@ -200,8 +177,9 @@ class EventCalendar extends React.Component {
                 key={UID}
                 ref={(component) => this._eventTargets[UID] = component}
                 onClick={this.props.onEventClick.bind(null, this._eventTargets[UID], eventData, day)}
+                onMouseOut={this.props.onEventMouseOut.bind(null, this._eventTargets[UID], eventData, day)}
                 onMouseOver={this.props.onEventMouseOver.bind(null, this._eventTargets[UID], eventData, day)}
-                onMouseOut={this.props.onEventMouseOut.bind(null, this._eventTargets[UID], eventData, day)}>
+                >
                 <div className="event-title">
                     {title}    
                 </div>
@@ -257,7 +235,27 @@ class EventCalendar extends React.Component {
     }
 }
 
-EventCalendar.propTypes = propTypes;
-EventCalendar.defaultProps = defaultProps;
+EventCalendar.propTypes = {
+    daysOfTheWeek: React.PropTypes.array,
+    events: React.PropTypes.array,
+    month: React.PropTypes.number.isRequired,
+    onEventClick: React.PropTypes.func,
+    onEventMouseOut: React.PropTypes.func,
+    onEventMouseOver: React.PropTypes.func,
+    year: React.PropTypes.number.isRequired,
+};
+
+EventCalendar.defaultProps = {
+    daysOfTheWeek: [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+    ],
+    events: [],
+};
 
 export default EventCalendar;

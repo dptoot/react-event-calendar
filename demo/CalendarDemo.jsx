@@ -1,16 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import EventCalendar from 'react-event-calendar';
+import EventCalendar from '../src/index.jsx';
 import moment from 'moment';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import Button from 'react-bootstrap/lib/Button';
-import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-import Popover from 'react-bootstrap/lib/PopOver';
-import Overlay from 'react-bootstrap/lib/Overlay';
+// import Row from 'react-bootstrap/lib/Row';
+// import Col from 'react-bootstrap/lib/Col';
+// import Button from 'react-bootstrap/lib/Button';
+// import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+// import Popover from 'react-bootstrap/lib/PopOver';
+// import Overlay from 'react-bootstrap/lib/Overlay';
 
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December', ];
+// const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', ];
 
 const events = [
     {
@@ -57,7 +55,7 @@ const events = [
     },
 ];
 
-class App extends React.Component {
+class CalendarDemo extends React.Component {
 
     constructor() {
         super();
@@ -99,12 +97,12 @@ class App extends React.Component {
     }
 
     handleEventMouseOver(target, data) {
-        this.setState({
+        /*this.setState({
             showPopover: true,
             popoverTarget: () => ReactDOM.findDOMNode(target),
             popoverTitle: data.title,
             popoverContent: data.description,
-        });
+        });*/
     }
 
      handleEventMouseOut() {
@@ -135,6 +133,7 @@ class App extends React.Component {
 
 		return (
             <div style={styles}>
+            {/*
             <Overlay
                 show={this.state.showPopover}
                 rootClose={true}
@@ -170,11 +169,21 @@ class App extends React.Component {
                             />
                     </Col>
                 </Row>
+            */}
+
+            <EventCalendar
+                ref={(component) => this.eventCalendar = component}
+                month={this.state.moment.month()}
+                year={this.state.moment.year()}
+                events={events}
+                onEventClick={this.handleEventClick}
+                onEventMouseOver={this.handleEventMouseOver}
+                onEventMouseOut={this.handleEventMouseOut}
+                />
             </div>
 		);
 	}
 }
 
-export default App;
+export default CalendarDemo;
 
-ReactDOM.render(<App />, document.getElementById('app'));
