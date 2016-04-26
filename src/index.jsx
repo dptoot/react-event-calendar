@@ -2,6 +2,10 @@ import React from 'react';
 import {Calendar} from 'calendar-base';
 import classnames from 'classnames';
 
+import CalendarDay from './CalendarDay.jsx';
+import CalendarEvent from './CalendarEvent.jsx';
+import CalendarTitle from './CalendarTitle.jsx';
+
 class EventCalendar extends React.Component {
 
     constructor(props) {
@@ -146,82 +150,43 @@ class EventCalendar extends React.Component {
     }
 
     renderDaysOfTheWeek() {
-        return this.props.daysOfTheWeek.map((element, index) => {
-            return (
-                <div className="flexColumn"
-                    key={index}>
-                    {element}
-                </div>
-            );
+        return this.props.daysOfTheWeek.map((title, index) => {
+            return <CalendarTitle title={title} />
         });
-    }
-
-    renderEvent(eventData, day, index) {
-        const showLabel = eventData.isFirstDay || day.weekDay === 0;
-
-        const eventClasses = classnames({
-            'event-slot': true,
-            'event': true,
-            'event-first-day': eventData.isFirstDay,
-            'event-last-day': eventData.isLastDay,
-            'event-has-label': showLabel,
-        });
-
-        // Generate a dynamic identifier
-        const UID = [day.month, day.day, index].join('_');
-        const title = showLabel ? eventData.title : '';
-
-
-        return (
-            <div className={eventClasses}
-                key={UID}
-                ref={(component) => this._eventTargets[UID] = component}
-                onClick={this.props.onEventClick.bind(null, this._eventTargets[UID], eventData, day)}
-                onMouseOut={this.props.onEventMouseOut.bind(null, this._eventTargets[UID], eventData, day)}
-                onMouseOver={this.props.onEventMouseOver.bind(null, this._eventTargets[UID], eventData, day)}
-                >
-                <div className="event-title">
-                    {title}    
-                </div>
-            </div>
-        );
     }
 
     renderEvents(day) {
-        const placeholder = <div className="event-slot"></div>;
+        
         // Trim excess slots
         const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1)
 
         return eventSlots.map((eventData, index) => {
-           
-           return (
-                <div key={index}>
-                    {(eventData) ? this.renderEvent(eventData, day, index) : placeholder}
-                </div>
+            // Generate Unique ID
+            const UID = [day.month, day.day, day.year].join('_');
+
+            return (
+                <CalendarEvent 
+                    day={day}
+                    eventData={eventData}
+                    onClick={this.props.onEventClick.bind(null, this._eventTargets[UID], eventData, day)}
+                    onMouseOut={this.props.onEventMouseOut.bind(null, this._eventTargets[UID], eventData, day)}
+                    onMouseOver={this.props.onEventMouseOver.bind(null, this._eventTargets[UID], eventData, day)}
+                    />
             );
         });
     }
 
     renderCalendarDays() {
-
         return this.getDaysWithEvents().map((day, index) => {
-
-            const dayClasses = classnames({
-                'flexColumn': true,
-                'day': true,
-                'inactive': day.siblingMonth,
-                'today': Calendar.interval(day, this.state.today) === 1,
-            });
-
+            const isToday = Calendar.interval(day, this.state.today) === 1;
+            const events = this.renderEvents(day);
+            
             return (
-                <div key={index} 
-                     className={dayClasses}>
-                    <div className="inner-grid">
-                        <div className="date">{day.day}</div>
-                        {this.renderEvents(day)}
-                    </div>
-                </div>
-            );
+                <CalendarDay 
+                    day={day} 
+                    events={events}
+                    isToday={isToday} />
+                );
         });
     }
 
