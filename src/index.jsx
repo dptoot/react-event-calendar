@@ -2,20 +2,14 @@ import React from 'react';
 import {Calendar} from 'calendar-base';
 import classnames from 'classnames';
 
-import CalendarDay from './CalendarDay.jsx';
-import CalendarEvent from './CalendarEvent.jsx';
-import CalendarTitle from './CalendarTitle.jsx';
+import CalendarDay from './components/CalendarDay.jsx';
+import CalendarEvent from './components/CalendarEvent.jsx';
+import CalendarTitle from './components/CalendarTitle.jsx';
 
 class EventCalendar extends React.Component {
 
     constructor(props) {
         super(props);
-
-        // Bind methods
-        this.getCalendarDays = this.getCalendarDays.bind(this);
-        this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
-        this.getEventMeta = this.getEventMeta.bind(this);
-        this.getToday = this.getToday.bind(this);
 
         this._eventTargets = {};
 
@@ -24,6 +18,12 @@ class EventCalendar extends React.Component {
         };
         
         this.calendar = new Calendar({siblingMonths: true, });
+
+        // Bind methods
+        this.getCalendarDays = this.getCalendarDays.bind(this);
+        this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
+        this.getEventMeta = this.getEventMeta.bind(this);
+        this.getToday = this.getToday.bind(this);
 
     }
 
@@ -168,9 +168,9 @@ class EventCalendar extends React.Component {
                 <CalendarEvent 
                     day={day}
                     eventData={eventData}
-                    onClick={this.props.onEventClick.bind(null, this._eventTargets[UID], eventData, day)}
-                    onMouseOut={this.props.onEventMouseOut.bind(null, this._eventTargets[UID], eventData, day)}
-                    onMouseOver={this.props.onEventMouseOver.bind(null, this._eventTargets[UID], eventData, day)}
+                    onClick={this.props.onEventClick}
+                    onMouseOut={this.props.onEventMouseOut}
+                    onMouseOver={this.props.onEventMouseOver}
                     />
             );
         });

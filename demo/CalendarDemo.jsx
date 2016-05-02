@@ -1,14 +1,16 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import EventCalendar from '../src/index.jsx';
 import moment from 'moment';
-// import Row from 'react-bootstrap/lib/Row';
-// import Col from 'react-bootstrap/lib/Col';
-// import Button from 'react-bootstrap/lib/Button';
-// import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-// import Popover from 'react-bootstrap/lib/PopOver';
-// import Overlay from 'react-bootstrap/lib/Overlay';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import Popover from 'react-bootstrap/lib/PopOver';
+import Overlay from 'react-bootstrap/lib/Overlay';
 
-// const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', ];
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', ];
 
 const events = [
     {
@@ -96,23 +98,23 @@ class CalendarDemo extends React.Component {
         });
     }
 
-    handleEventMouseOver(target, data) {
-        /*this.setState({
+    handleEventMouseOver(target, eventData, day) {
+        this.setState({
             showPopover: true,
             popoverTarget: () => ReactDOM.findDOMNode(target),
-            popoverTitle: data.title,
-            popoverContent: data.description,
-        });*/
+            popoverTitle: eventData.title,
+            popoverContent: eventData.description,
+        });
     }
 
-     handleEventMouseOut() {
+     handleEventMouseOut(target, eventData, day) {
         this.setState({
             showPopover: false,
         });
      }
 
-    handleEventClick(ref, data) {
-        alert('Maybe you want to go somewhere!')
+    handleEventClick(target, eventData, day) {
+        
     }
 
     getState(now) {
@@ -133,16 +135,17 @@ class CalendarDemo extends React.Component {
 
 		return (
             <div style={styles}>
-            {/*
             <Overlay
                 show={this.state.showPopover}
-                rootClose={true}
+                rootClose
                 onHide = {()=>this.setState({showPopover: false, })}
                 placement="top"
                 container={this}
                 target={this.state.popoverTarget}>
               <Popover id="event" title={this.state.popoverTitle}>{this.state.popoverContent}</Popover>
             </Overlay>
+            
+            <Grid>
                 <Row>
                     <Col xs={6}>
                         <ButtonToolbar>
@@ -159,7 +162,6 @@ class CalendarDemo extends React.Component {
                 <Row>
                     <Col xs={12}>
                         <EventCalendar
-                            ref={(component) => this.eventCalendar = component}
                             month={this.state.moment.month()}
                             year={this.state.moment.year()}
                             events={events}
@@ -169,17 +171,8 @@ class CalendarDemo extends React.Component {
                             />
                     </Col>
                 </Row>
-            */}
-
-            <EventCalendar
-                ref={(component) => this.eventCalendar = component}
-                month={this.state.moment.month()}
-                year={this.state.moment.year()}
-                events={events}
-                onEventClick={this.handleEventClick}
-                onEventMouseOver={this.handleEventMouseOver}
-                onEventMouseOut={this.handleEventMouseOut}
-                />
+            </Grid>
+            
             </div>
 		);
 	}

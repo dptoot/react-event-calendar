@@ -2,37 +2,39 @@ import React from 'react';
 import classnames from 'classnames';
 
 
-const CalendarEvent = ({day, eventData, onClick, onMouseOut, onMouseOver}) => {
+class CalendarEvent extends React.Component {
 
+  render() {
     // Return a placeholder element if there is no event data 
-    if(!eventData) {
+    if(!this.props.eventData) {
         return <div className="event-slot"></div>;
     }
 
-    const showLabel = eventData.isFirstDay || day.weekDay === 0;
+    const showLabel = this.props.eventData.isFirstDay || this.props.day.weekDay === 0;
 
     const eventClasses = classnames({
         'event-slot': true,
         'event': true,
-        'event-first-day': eventData.isFirstDay,
-        'event-last-day': eventData.isLastDay,
+        'event-first-day': this.props.eventData.isFirstDay,
+        'event-last-day': this.props.eventData.isLastDay,
         'event-has-label': showLabel,
     });
 
     // Generate a dynamic identifier
-    const title = showLabel ? eventData.title : '';
+    const title = showLabel ? this.props.eventData.title : '';
 
     return (
             <div className={eventClasses}
-                 onClick={onClick}
-                 onMouseOut={onMouseOut}
-                 onMouseOver={onMouseOver}
+                 onClick={this.props.onClick.bind(null, this, this.props.eventData, this.props.day)}
+                 onMouseOut={this.props.onMouseOut.bind(null, this, this.props.eventData, this.props.day)}
+                 onMouseOver={this.props.onMouseOver.bind(null, this, this.props.eventData, this.props.day)}
             >
                 <div className="event-title">
                     {title}    
                 </div>
         </div>
     );
+  }
 }
 
 CalendarEvent.propTypes = {
