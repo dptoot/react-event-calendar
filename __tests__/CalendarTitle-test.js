@@ -1,6 +1,3 @@
-// __tests__/CheckboxWithLabel-test.js
-'use strict';
-
 jest.unmock('../src/components/CalendarTitle.jsx');
 
 import React from 'react';
@@ -10,12 +7,12 @@ import CalendarTitle from '../src/components/CalendarTitle.jsx';
 
 describe('CalendarTitle', () => {
 
-	let component;
-	let node; 
+    let component;
+    let node; 
 
     beforeEach(() => {
         component = TestUtils.renderIntoDocument(<div><CalendarTitle title="Sunday"/></div>);
-    	node = ReactDOM.findDOMNode(component);
+        node = ReactDOM.findDOMNode(component);
     });
 
     it('displays a title supplied', () => {
