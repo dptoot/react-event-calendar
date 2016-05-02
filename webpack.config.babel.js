@@ -34,13 +34,13 @@ const CSS_PATHS = [
     path.join(ROOT_PATH, 'node_modules/react-ghfork/gh-fork-ribbon.ie.css'),
     path.join(ROOT_PATH, 'node_modules/react-ghfork/gh-fork-ribbon.css')
 ];
+
 const STYLE_ENTRIES = [
-    'highlight.js/styles/github.css',
+    
     'react-ghfork/gh-fork-ribbon.ie.css',
     'react-ghfork/gh-fork-ribbon.css',
     './style.css',
-    'bootstrap-loader',
-
+    'bootstrap-loader'
 ];
 
 process.env.BABEL_ENV = TARGET;

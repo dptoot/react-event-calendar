@@ -1,7 +1,7 @@
 {
   "name": "react-event-calendar",
   "version": "0.1.0",
-  "description": "react-event-calendar",
+  "description": "React JS component that will display supplied event data within a calendar view of a given month.",
   "author": "James Lewis",
   "scripts": {
     "start": "webpack-dev-server",
