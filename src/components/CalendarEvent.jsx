@@ -39,7 +39,10 @@ class CalendarEvent extends React.Component {
 
 CalendarEvent.propTypes = {
   day: React.PropTypes.object.isRequired,
-  eventData: React.PropTypes.object,
+  eventData: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool,
+  ]),
   onClick: React.PropTypes.func,
   onMouseOut: React.PropTypes.func,
   onMouseOver: React.PropTypes.func,

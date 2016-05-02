@@ -149,9 +149,18 @@ class EventCalendar extends React.Component {
         return lastIndexOfEvent < 3 || lastIndexOfEvent === undefined ? 2 : lastIndexOfEvent;
     }
 
+    getSerializedDay(day) {
+        return [day.weekDay, day.day, day.month, day.year].join('');
+    }
+
     renderDaysOfTheWeek() {
         return this.props.daysOfTheWeek.map((title, index) => {
-            return <CalendarTitle title={title} />
+            return (
+                <CalendarTitle 
+                    key={'title_'+ index}
+                    title={title} 
+                />
+            )   
         });
     }
 
@@ -161,11 +170,9 @@ class EventCalendar extends React.Component {
         const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1)
 
         return eventSlots.map((eventData, index) => {
-            // Generate Unique ID
-            const UID = [day.month, day.day, day.year].join('_');
-
             return (
                 <CalendarEvent 
+                    key={'event_'+index+this.getSerializedDay(day)}
                     day={day}
                     eventData={eventData}
                     onClick={this.props.onEventClick}
@@ -183,6 +190,7 @@ class EventCalendar extends React.Component {
             
             return (
                 <CalendarDay 
+                    key={'day_'+this.getSerializedDay(day)}
                     day={day} 
                     events={events}
                     isToday={isToday} />
