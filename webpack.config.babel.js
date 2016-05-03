@@ -36,7 +36,6 @@ const CSS_PATHS = [
 ];
 
 const STYLE_ENTRIES = [
-    
     'react-ghfork/gh-fork-ribbon.ie.css',
     'react-ghfork/gh-fork-ribbon.css',
     './style.css',
@@ -262,7 +261,7 @@ const distCommon = {
         libraryTarget: 'umd',
         library: config.library
     },
-    entry: config.paths.src,
+    entry: path.join(config.paths.src, 'index.jsx'),
     externals: {
         'react': {
             commonjs: 'react',
