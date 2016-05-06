@@ -10,7 +10,7 @@ class CalendarEvent extends React.Component {
         return <div className="event-slot"></div>;
     }
 
-    const showLabel = this.props.eventData.isFirstDay || this.props.day.weekDay === 0;
+    const showLabel = this.props.eventData.isFirstDay || (this.props.day.weekDay === 0 && this.props.wrapTitle);
 
     const eventClasses = classnames({
         'event-slot': true,
