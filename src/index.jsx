@@ -2,9 +2,9 @@ import React from 'react';
 import {Calendar} from 'calendar-base';
 import classnames from 'classnames';
 
-import CalendarDay from './components/CalendarDay.jsx';
-import CalendarEvent from './components/CalendarEvent.jsx';
-import CalendarTitle from './components/CalendarTitle.jsx';
+import CalendarDay from './components/CalendarDay';
+import CalendarEvent from './components/CalendarEvent';
+import CalendarTitle from './components/CalendarTitle';
 
 class EventCalendar extends React.Component {
 
@@ -108,10 +108,14 @@ class EventCalendar extends React.Component {
                     if (dayIndex === 0) {
                          // Flag first day of event
                         eventData.isFirstDay = true;
-                    } else if (dayIndex === eventLength - 1) {
+                    }
+                    
+                    if (dayIndex === eventLength - 1) {
                         // Flag last day of event
                         eventData.isLastDay = true;
-                    } else {
+                    }
+                    
+                    if (!eventData.isFirstDay || !eventData.isLastDay) {
                         // Flag between day of event
                         eventData.isBetweenDay = true;
                     }
