@@ -61,16 +61,16 @@ const events = [
 
 ### Properties
 
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| events | array | Array of event objects to be represented on the calendar (see below for options)|
-| month | int | Selected Month to display |
-| year | int | Selected Year to display |
-| wrapTitle | boolean | (default: true) Redisplay an event's title if it's duration wraps to the next week
-| maxEventSlots | int | (default: 10) Maximum number of events to display per calendar day 
-| onEventClick | func(target, eventData, day) | Callback for user click on any event node |
-| onEventMouseOver | func(target, eventData, day) | Callback for user mouse over on any event node |
-| onEventMouseOut | func(target, eventData, day) | Callback for user mouse out on any event node |
+| property |type | default | description |
+| -------- | ---- | ----------- | ----- |
+| events | array |   |Array of event objects to be represented on the calendar (see below for options)|
+| month | int |   | (Required) Selected Month to display |
+| year | int |   | (Required) Selected Year to display |
+| wrapTitle | boolean | true | Redisplay an event's title if it's duration wraps to the next week
+| maxEventSlots | int | 10 | Maximum number of events to display per calendar day 
+| onEventClick | func(target, eventData, day) |   | Callback for user click on any event node |
+| onEventMouseOver | func(target, eventData, day) |   | Callback for user mouse over on any event node |
+| onEventMouseOut | func(target, eventData, day) |   | Callback for user mouse out on any event node |
 
 ### Events object 
 The event object can contain any data you wish that may come in use to you later via the supplied Event Callbacks.  There are hoever some required fields that must be populated.  There are also optional data points that can be added to enhance each event.
