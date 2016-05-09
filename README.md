@@ -55,7 +55,8 @@ const events = [
     month={7}
     year={2015}
     events={events} 
-    onEventClick={(target, eventData, day) => console.log(eventData) />
+    onEventClick={(target, eventData, day) => console.log(eventData) 
+    />
 ```
 
 ### Properties
@@ -65,6 +66,7 @@ const events = [
 | events | array | Array of event objects to be represented on the calendar (see below for options)|
 | month | int | Selected Month to display |
 | year | int | Selected Year to display |
+| wrapTitle | boolean | (default: true) Redisplay an event's title if it's duration wraps to the next week
 | onEventClick | func(target, eventData, day) | Callback for user click on any event node |
 | onEventMouseOver | func(target, eventData, day) | Callback for user mouse over on any event node |
 | onEventMouseOut | func(target, eventData, day) | Callback for user mouse out on any event node |

@@ -220,7 +220,9 @@ EventCalendar.propTypes = {
     onEventClick: React.PropTypes.func,
     onEventMouseOut: React.PropTypes.func,
     onEventMouseOver: React.PropTypes.func,
+    wrapTitle: React.PropTypes.bool,
     year: React.PropTypes.number.isRequired,
+
 };
 
 EventCalendar.defaultProps = {
@@ -234,6 +236,7 @@ EventCalendar.defaultProps = {
         'Saturday',
     ],
     events: [],
+    wrapTitle: true,
 };
 
 export default EventCalendar;

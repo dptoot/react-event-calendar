@@ -46,6 +46,7 @@ CalendarEvent.propTypes = {
   onClick: React.PropTypes.func,
   onMouseOut: React.PropTypes.func,
   onMouseOver: React.PropTypes.func,
+  wrapTitle: React.PropTypes.bool,
 };
 
 CalendarEvent.defaultProps = {
