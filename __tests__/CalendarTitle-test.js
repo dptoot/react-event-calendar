@@ -1,9 +1,9 @@
-jest.unmock('../src/components/CalendarTitle.jsx');
+jest.unmock('../src/components/CalendarTitle');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import CalendarTitle from '../src/components/CalendarTitle.jsx';
+import CalendarTitle from '../src/components/CalendarTitle';
 
 describe('CalendarTitle', () => {
 
