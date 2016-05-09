@@ -775,12 +775,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(CalendarEvent, [{
 	        key: 'render',
 	        value: function render() {
+	            var _props$onClick, _props$onMouseOut, _props$onMouseOver;
+	
 	            // Return a placeholder element if there is no event data
 	            if (!this.props.eventData) {
 	                return _react2.default.createElement('div', { className: 'event-slot' });
 	            }
 	
 	            var showLabel = this.props.eventData.isFirstDay || this.props.day.weekDay === 0;
+	            var title = showLabel ? this.props.eventData.title : '';
 	
 	            var eventClasses = (0, _classnames2.default)({
 	                'event-slot': true,
@@ -790,15 +793,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                'event-has-label': showLabel
 	            });
 	
-	            // Generate a dynamic identifier
-	            var title = showLabel ? this.props.eventData.title : '';
+	            var sharedArguments = [null, this, this.props.eventData, this.props.day];
 	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: eventClasses,
-	                    onClick: this.props.onClick.bind(null, this, this.props.eventData, this.props.day),
-	                    onMouseOut: this.props.onMouseOut.bind(null, this, this.props.eventData, this.props.day),
-	                    onMouseOver: this.props.onMouseOver.bind(null, this, this.props.eventData, this.props.day)
+	                    onClick: (_props$onClick = this.props.onClick).bind.apply(_props$onClick, sharedArguments),
+	                    onMouseOut: (_props$onMouseOut = this.props.onMouseOut).bind.apply(_props$onMouseOut, sharedArguments),
+	                    onMouseOver: (_props$onMouseOver = this.props.onMouseOver).bind.apply(_props$onMouseOver, sharedArguments)
 	                },
 	                _react2.default.createElement(
 	                    'div',
@@ -818,6 +820,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onClick: _react2.default.PropTypes.func,
 	    onMouseOut: _react2.default.PropTypes.func,
 	    onMouseOver: _react2.default.PropTypes.func
+	};
+	
+	CalendarEvent.defaultProps = {
+	    onClick: function onClick() {},
+	    onMouseOut: function onMouseOut() {},
+	    onMouseOver: function onMouseOver() {}
 	};
 	
 	exports.default = CalendarEvent;
