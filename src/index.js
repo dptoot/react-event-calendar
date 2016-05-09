@@ -38,8 +38,7 @@ class EventCalendar extends React.Component {
 
     getCalendarDays() {
         return this.calendar.getCalendar(this.props.year, this.props.month).map((day) => {
-            // Could be done with Array.fill but why require the polyfill just for that
-            day.eventSlots = [false,false,false,false,false,false,false,false,false,false,];
+            day.eventSlots = Array(this.props.maxEventSlots).fill(false); 
             return day;
         });
     }
@@ -216,6 +215,7 @@ class EventCalendar extends React.Component {
 EventCalendar.propTypes = {
     daysOfTheWeek: React.PropTypes.array,
     events: React.PropTypes.array,
+    maxEventSlots: React.PropTypes.number,
     month: React.PropTypes.number.isRequired,
     onEventClick: React.PropTypes.func,
     onEventMouseOut: React.PropTypes.func,
@@ -237,6 +237,7 @@ EventCalendar.defaultProps = {
     ],
     events: [],
     wrapTitle: true,
+    maxEventSlots: 10,
 };
 
 export default EventCalendar;

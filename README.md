@@ -67,6 +67,7 @@ const events = [
 | month | int | Selected Month to display |
 | year | int | Selected Year to display |
 | wrapTitle | boolean | (default: true) Redisplay an event's title if it's duration wraps to the next week
+| maxEventSlots | int | (default: 10) Maximum number of events to display per calendar day 
 | onEventClick | func(target, eventData, day) | Callback for user click on any event node |
 | onEventMouseOver | func(target, eventData, day) | Callback for user mouse over on any event node |
 | onEventMouseOut | func(target, eventData, day) | Callback for user mouse out on any event node |
@@ -82,7 +83,7 @@ The event object can contain any data you wish that may come in use to you later
 
 
 ### Note
-Currently the component currently allows for up to 10 events to be displayed per day.
+At this time any event indexed past the threshold supplied by maxEventSlots will never display.  Given the purpose of the component is to show the start and end of event streams I am still trying to decide the best way to address "hidden" events.  All ideas are welcome! :D
 
 ## License
 

@@ -143,6 +143,7 @@ class CalendarDemo extends React.Component {
                                 onEventClick={this.handleEventClick}
                                 onEventMouseOver={this.handleEventMouseOver}
                                 onEventMouseOut={this.handleEventMouseOut}
+                                maxEventSlots={10}
                                 />
                         </Col>
                     </Row>
