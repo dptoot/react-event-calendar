@@ -130,9 +130,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'getCalendarDays',
 	        value: function getCalendarDays() {
+	            var _this2 = this;
+	
 	            return this.calendar.getCalendar(this.props.year, this.props.month).map(function (day) {
-	                // Could be done with Array.fill but why require the polyfill just for that
-	                day.eventSlots = [false, false, false, false, false, false, false, false, false, false];
+	                day.eventSlots = Array(_this2.props.maxEventSlots).fill(false);
 	                return day;
 	            });
 	        }
@@ -175,7 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'getDaysWithEvents',
 	        value: function getDaysWithEvents() {
-	            var _this2 = this;
+	            var _this3 = this;
 	
 	            // Get all the days in this months calendar view
 	            // Sibling Months included
@@ -188,9 +189,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Iterate over each of the supplied events
 	            this.props.events.forEach(function (eventItem) {
 	
-	                var eventStart = _this2.getCalendarDayObject(eventItem.start);
-	                var eventEnd = _this2.getCalendarDayObject(eventItem.end);
-	                var eventMeta = _this2.getEventMeta(days, eventStart, eventEnd);
+	                var eventStart = _this3.getCalendarDayObject(eventItem.start);
+	                var eventEnd = _this3.getCalendarDayObject(eventItem.end);
+	                var eventMeta = _this3.getEventMeta(days, eventStart, eventEnd);
 	
 	                if (eventMeta.isVisibleInView) {
 	                    var eventLength = eventMeta.visibleEventLength;
@@ -269,34 +270,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'renderEvents',
 	        value: function renderEvents(day) {
-	            var _this3 = this;
+	            var _this4 = this;
 	
 	            // Trim excess slots
 	            var eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1);
 	
 	            return eventSlots.map(function (eventData, index) {
 	                return _react2.default.createElement(_CalendarEvent2.default, {
-	                    key: 'event_' + index + _this3.getSerializedDay(day),
+	                    key: 'event_' + index + _this4.getSerializedDay(day),
 	                    day: day,
 	                    eventData: eventData,
-	                    onClick: _this3.props.onEventClick,
-	                    onMouseOut: _this3.props.onEventMouseOut,
-	                    onMouseOver: _this3.props.onEventMouseOver,
-	                    wrapTitle: _this3.props.wrapTitle
+	                    onClick: _this4.props.onEventClick,
+	                    onMouseOut: _this4.props.onEventMouseOut,
+	                    onMouseOver: _this4.props.onEventMouseOver,
+	                    wrapTitle: _this4.props.wrapTitle
 	                });
 	            });
 	        }
 	    }, {
 	        key: 'renderCalendarDays',
 	        value: function renderCalendarDays() {
-	            var _this4 = this;
+	            var _this5 = this;
 	
 	            return this.getDaysWithEvents().map(function (day, index) {
-	                var isToday = _calendarBase.Calendar.interval(day, _this4.state.today) === 1;
-	                var events = _this4.renderEvents(day);
+	                var isToday = _calendarBase.Calendar.interval(day, _this5.state.today) === 1;
+	                var events = _this5.renderEvents(day);
 	
 	                return _react2.default.createElement(_CalendarDay2.default, {
-	                    key: 'day_' + _this4.getSerializedDay(day),
+	                    key: 'day_' + _this5.getSerializedDay(day),
 	                    day: day,
 	                    events: events,
 	                    isToday: isToday });
@@ -320,6 +321,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	EventCalendar.propTypes = {
 	    daysOfTheWeek: _react2.default.PropTypes.array,
 	    events: _react2.default.PropTypes.array,
+	    maxEventSlots: _react2.default.PropTypes.number,
 	    month: _react2.default.PropTypes.number.isRequired,
 	    onEventClick: _react2.default.PropTypes.func,
 	    onEventMouseOut: _react2.default.PropTypes.func,
@@ -332,7 +334,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	EventCalendar.defaultProps = {
 	    daysOfTheWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 	    events: [],
-	    wrapTitle: true
+	    wrapTitle: true,
+	    maxEventSlots: 10
 	};
 	
 	exports.default = EventCalendar;
