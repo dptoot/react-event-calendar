@@ -281,7 +281,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    eventData: eventData,
 	                    onClick: _this3.props.onEventClick,
 	                    onMouseOut: _this3.props.onEventMouseOut,
-	                    onMouseOver: _this3.props.onEventMouseOver
+	                    onMouseOver: _this3.props.onEventMouseOver,
+	                    wrapTitle: _this3.props.wrapTitle
 	                });
 	            });
 	        }
@@ -323,12 +324,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onEventClick: _react2.default.PropTypes.func,
 	    onEventMouseOut: _react2.default.PropTypes.func,
 	    onEventMouseOver: _react2.default.PropTypes.func,
+	    wrapTitle: _react2.default.PropTypes.bool,
 	    year: _react2.default.PropTypes.number.isRequired
+	
 	};
 	
 	EventCalendar.defaultProps = {
 	    daysOfTheWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-	    events: []
+	    events: [],
+	    wrapTitle: true
 	};
 	
 	exports.default = EventCalendar;
@@ -786,7 +790,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return _react2.default.createElement('div', { className: 'event-slot' });
 	            }
 	
-	            var showLabel = this.props.eventData.isFirstDay || this.props.day.weekDay === 0;
+	            var showLabel = this.props.eventData.isFirstDay || this.props.day.weekDay === 0 && this.props.wrapTitle;
 	            var title = showLabel ? this.props.eventData.title : '';
 	
 	            var eventClasses = (0, _classnames2.default)({
@@ -823,7 +827,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    eventData: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.object, _react2.default.PropTypes.bool]),
 	    onClick: _react2.default.PropTypes.func,
 	    onMouseOut: _react2.default.PropTypes.func,
-	    onMouseOver: _react2.default.PropTypes.func
+	    onMouseOver: _react2.default.PropTypes.func,
+	    wrapTitle: _react2.default.PropTypes.bool
 	};
 	
 	CalendarEvent.defaultProps = {
