@@ -182,6 +182,7 @@ class EventCalendar extends React.Component {
                     onClick={this.props.onEventClick}
                     onMouseOut={this.props.onEventMouseOut}
                     onMouseOver={this.props.onEventMouseOver}
+                    wrapTitle={this.props.wrapTitle}
                     />
             );
         });
