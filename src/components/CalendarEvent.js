@@ -19,7 +19,7 @@ class CalendarEvent extends React.Component {
         'event-first-day': this.props.eventData.isFirstDay,
         'event-last-day': this.props.eventData.isLastDay,
         'event-has-label': showLabel,
-    });
+    }, this.props.eventData.eventClasses);
 
     const sharedArguments = [null, this, this.props.eventData, this.props.day];
 
