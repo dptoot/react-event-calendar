@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/react-event-calendar.svg)](https://badge.fury.io/js/react-event-calendar)
+
 # react-event-calendar
 A Calendar component that will display supplied events in a given month. 
 
