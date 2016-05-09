@@ -38,6 +38,7 @@ const events = [
     {
         start: '2015-07-20',
         end: '2015-07-02',
+        eventClasses: 'optionalEvent'
         title: 'test event',
         description: 'This is a test description of an event',
     },
@@ -61,15 +62,23 @@ const events = [
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| events | array | Array of event objects to be represented on the calendar |
+| events | array | Array of event objects to be represented on the calendar (see below for options)|
 | month | int | Selected Month to display |
 | year | int | Selected Year to display |
 | onEventClick | func(target, eventData, day) | Callback for user click on any event node |
 | onEventMouseOver | func(target, eventData, day) | Callback for user mouse over on any event node |
 | onEventMouseOut | func(target, eventData, day) | Callback for user mouse out on any event node |
 
+### Events object 
+| Key | Type | Required | Description |
+| -------- | ---- | ----------- |
+| start | string | true | Date of event start (Format: YYYY-MM-DD)|
+| end | string | true | Date of event end (Format: YYYY-MM-DD) |
+| eventClasses | string | false | CSS classes you wish applied to the event (space delimited) |
+
+
 ### Note
-The component currently allows for up to 10 events to be displayed per day.
+Currently the component currently allows for up to 10 events to be displayed per day.
 
 ## License
 

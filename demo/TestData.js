@@ -51,6 +51,7 @@ export default {
             return {
                  start: today.date(data.start).format(dataFormat),
                  end: today.add(data.length-1, 'days').format(dataFormat),
+                 eventClasses: 'custom-event-class',
                  title: data.length + ' day event ' + (data.title || ''),
                  description: description
             }
