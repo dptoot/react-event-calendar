@@ -70,8 +70,10 @@ const events = [
 | onEventMouseOut | func(target, eventData, day) | Callback for user mouse out on any event node |
 
 ### Events object 
+The event object can contain any data you wish that may come in use to you later via the supplied Event Callbacks.  There are hoever some required fields that must be populated.  There are also optional data points that can be added to enhance each event.
+
 | Key | Type | Required | Description |
-| -------- | ---- | ----------- |
+| -------- | ---- | ----------- | --------|
 | start | string | true | Date of event start (Format: YYYY-MM-DD)|
 | end | string | true | Date of event end (Format: YYYY-MM-DD) |
 | eventClasses | string | false | CSS classes you wish applied to the event (space delimited) |
