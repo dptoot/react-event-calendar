@@ -1,6 +1,0 @@
-demo/
-dist/
-tests/
-src/
-.*
-webpack.config.babel.js
