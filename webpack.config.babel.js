@@ -261,7 +261,7 @@ const distCommon = {
         libraryTarget: 'umd',
         library: config.library
     },
-    entry: path.join(config.paths.src, 'index.jsx'),
+    entry: path.join(config.paths.src, 'index.js'),
     externals: {
         'react': {
             commonjs: 'react',

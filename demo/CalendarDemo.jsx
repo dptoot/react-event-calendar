@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EventCalendar from '../src/index.jsx';
+import EventCalendar from '../src/index.js';
 import moment from 'moment';
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
