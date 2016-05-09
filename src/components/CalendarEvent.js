@@ -11,6 +11,7 @@ class CalendarEvent extends React.Component {
     }
 
     const showLabel = this.props.eventData.isFirstDay || this.props.day.weekDay === 0;
+    const title = showLabel ? this.props.eventData.title : '';
 
     const eventClasses = classnames({
         'event-slot': true,
@@ -20,14 +21,13 @@ class CalendarEvent extends React.Component {
         'event-has-label': showLabel,
     });
 
-    // Generate a dynamic identifier
-    const title = showLabel ? this.props.eventData.title : '';
+    const sharedArguments = [null, this, this.props.eventData, this.props.day];
 
     return (
             <div className={eventClasses}
-                 onClick={this.props.onClick.bind(null, this, this.props.eventData, this.props.day)}
-                 onMouseOut={this.props.onMouseOut.bind(null, this, this.props.eventData, this.props.day)}
-                 onMouseOver={this.props.onMouseOver.bind(null, this, this.props.eventData, this.props.day)}
+                 onClick={this.props.onClick.bind(...sharedArguments)}
+                 onMouseOut={this.props.onMouseOut.bind(...sharedArguments)}
+                 onMouseOver={this.props.onMouseOver.bind(...sharedArguments)}
             >
                 <div className="event-title">
                     {title}    
@@ -48,5 +48,10 @@ CalendarEvent.propTypes = {
   onMouseOver: React.PropTypes.func,
 };
 
+CalendarEvent.defaultProps = {
+  onClick: () => {},
+  onMouseOut: () => {},
+  onMouseOver: () => {},
+}
 
 export default CalendarEvent;
