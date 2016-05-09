@@ -205,10 +205,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        if (dayIndex === 0) {
 	                            // Flag first day of event
 	                            eventData.isFirstDay = true;
-	                        } else if (dayIndex === eventLength - 1) {
+	                        }
+	
+	                        if (dayIndex === eventLength - 1) {
 	                            // Flag last day of event
 	                            eventData.isLastDay = true;
-	                        } else {
+	                        }
+	
+	                        if (!eventData.isFirstDay || !eventData.isLastDay) {
 	                            // Flag between day of event
 	                            eventData.isBetweenDay = true;
 	                        }
@@ -791,7 +795,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                'event-first-day': this.props.eventData.isFirstDay,
 	                'event-last-day': this.props.eventData.isLastDay,
 	                'event-has-label': showLabel
-	            });
+	            }, this.props.eventData.eventClasses);
 	
 	            var sharedArguments = [null, this, this.props.eventData, this.props.day];
 	
