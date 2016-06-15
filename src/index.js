@@ -197,7 +197,9 @@ class EventCalendar extends React.Component {
                     key={'day_'+this.getSerializedDay(day)}
                     day={day} 
                     events={events}
-                    isToday={isToday} />
+                    isToday={isToday} 
+                    onClick={this.props.onClick}
+                    />
                 );
         });
     }
@@ -222,6 +224,7 @@ EventCalendar.propTypes = {
     onEventMouseOver: React.PropTypes.func,
     wrapTitle: React.PropTypes.bool,
     year: React.PropTypes.number.isRequired,
+    onClick: React.PropTypes.func,
 
 };
 
