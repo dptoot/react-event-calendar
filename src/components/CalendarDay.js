@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import moment from 'moment';
 
 const CalendarDay = ({day, isToday, events, onClick}) => {
     const dayClasses = classnames({
@@ -12,7 +11,7 @@ const CalendarDay = ({day, isToday, events, onClick}) => {
 
     return (
       <div 
-        onClick = {onClick.bind(null, 'day', day)}
+        onClick={onClick.bind(null, 'day', day)}
         className={dayClasses}>
             <div className="inner-grid">
                 <div className="date">

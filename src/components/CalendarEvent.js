@@ -25,7 +25,12 @@ class CalendarEvent extends React.Component {
 
     return (
             <div className={eventClasses}
-                 onClick={this.props.onClick.bind(...sharedArguments)}
+              onClick={
+                (e) => {
+                  this.props.onClick.bind(...sharedArguments)();
+                  e.stopPropagation();
+                }
+              }
                  onMouseOut={this.props.onMouseOut.bind(...sharedArguments)}
                  onMouseOver={this.props.onMouseOver.bind(...sharedArguments)}
             >
