@@ -1,26 +1,28 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const CalendarDay = ({day, isToday, events, onClick}) => {
+class CalendarDay extends React.Component {
+  render () {
     const dayClasses = classnames({
         'flexColumn': true,
         'day': true,
-        'inactive': day.siblingMonth,
-        'today': isToday,
+        'inactive': this.props.day.siblingMonth,
+        'today': this.props.isToday,
     });
 
     return (
       <div 
-        onClick={onClick.bind(null, 'day', day)}
+        onClick={this.props.onClick.bind(null, this, this.props.day)}
         className={dayClasses}>
             <div className="inner-grid">
                 <div className="date">
-                    {day.day}
+                    {this.props.day.day}
                 </div>
-                {events}
+                {this.props.events}
             </div>
         </div>
     );
+  }
 }
 
 CalendarDay.propTypes = {
