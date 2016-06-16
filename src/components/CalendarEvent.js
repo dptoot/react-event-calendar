@@ -24,22 +24,21 @@ class CalendarEvent extends React.Component {
     const sharedArguments = [null, this, this.props.eventData, this.props.day];
 
     return (
-            <div className={eventClasses}
-              onClick={
-                (e) => {
-                  this.props.onClick.bind(...sharedArguments)();
-                  e.stopPropagation();
-                }
-              }
-                 onMouseOut={this.props.onMouseOut.bind(...sharedArguments)}
-                 onMouseOver={this.props.onMouseOver.bind(...sharedArguments)}
-            >
-                <div className="event-title">
-                    {title}    
-                </div>
+      <div className={eventClasses}
+        onClick={e => {
+          const [ , ...args ] = sharedArguments;
+          this.props.onClick(...args);
+          e.stopPropagation();
+        }}
+        onMouseOut={this.props.onMouseOut.bind(...sharedArguments)}
+        onMouseOver={this.props.onMouseOver.bind(...sharedArguments)}
+      >
+        <div className="event-title">
+          {title}    
         </div>
+      </div>
     );
-  }
+}
 }
 
 CalendarEvent.propTypes = {
@@ -56,8 +55,8 @@ CalendarEvent.propTypes = {
 
 CalendarEvent.defaultProps = {
   onClick: () => {},
-  onMouseOut: () => {},
-  onMouseOver: () => {},
+    onMouseOut: () => {},
+      onMouseOver: () => {},
 }
 
 export default CalendarEvent;
