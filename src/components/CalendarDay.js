@@ -30,4 +30,8 @@ CalendarDay.propTypes = {
   onClick: React.PropTypes.func,
 };
 
+CalendarDay.defaultProps = {
+  onClick: () => {},
+}
+
 export default CalendarDay;
