@@ -4,59 +4,67 @@ import classnames from 'classnames';
 
 class CalendarEvent extends React.Component {
 
-  render() {
-    // Return a placeholder element if there is no event data 
-    if(!this.props.eventData) {
-        return <div className="event-slot"></div>;
+    constructor(props) {
+        super(props);
+
+        this.sharedArguments = [null, this, this.props.eventData, this.props.day];
+        // Bind methods
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    const showLabel = this.props.eventData.isFirstDay || (this.props.day.weekDay === 0 && this.props.wrapTitle);
-    const title = showLabel ? this.props.eventData.title : '';
+    handleClick(e) {
+        this.props.onClick(...this.sharedArguments.slice(1));
+        e.stopPropagation();
+    }
 
-    const eventClasses = classnames({
-        'event-slot': true,
-        'event': true,
-        'event-first-day': this.props.eventData.isFirstDay,
-        'event-last-day': this.props.eventData.isLastDay,
-        'event-has-label': showLabel,
-    }, this.props.eventData.eventClasses);
+    render() {
+        // Return a placeholder element if there is no event data 
+        if(!this.props.eventData) {
+            return <div className="event-slot"></div>;
+        }
 
-    const sharedArguments = [null, this, this.props.eventData, this.props.day];
+        const showLabel = this.props.eventData.isFirstDay || (this.props.day.weekDay === 0 && this.props.wrapTitle);
+        const title = showLabel ? this.props.eventData.title : '';
 
-    return (
-      <div className={eventClasses}
-        onClick={e => {
-          const [ , ...args ] = sharedArguments;
-          this.props.onClick(...args);
-          e.stopPropagation();
-        }}
-        onMouseOut={this.props.onMouseOut.bind(...sharedArguments)}
-        onMouseOver={this.props.onMouseOver.bind(...sharedArguments)}
-      >
-        <div className="event-title">
-          {title}    
-        </div>
-      </div>
-    );
-}
+        const eventClasses = classnames({
+            'event-slot': true,
+            'event': true,
+            'event-first-day': this.props.eventData.isFirstDay,
+            'event-last-day': this.props.eventData.isLastDay,
+            'event-has-label': showLabel,
+        }, this.props.eventData.eventClasses);
+
+
+        return (
+            <div className={eventClasses}
+                onClick={this.handleClick}
+                onMouseOut={this.props.onMouseOut.bind(...this.sharedArguments)}
+                onMouseOver={this.props.onMouseOver.bind(...this.sharedArguments)}
+            >
+                <div className="event-title">
+                    {title}    
+                </div>
+            </div>
+        );
+    }
 }
 
 CalendarEvent.propTypes = {
-  day: React.PropTypes.object.isRequired,
-  eventData: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  onClick: React.PropTypes.func,
-  onMouseOut: React.PropTypes.func,
-  onMouseOver: React.PropTypes.func,
-  wrapTitle: React.PropTypes.bool,
+    day: React.PropTypes.object.isRequired,
+    eventData: React.PropTypes.oneOfType([
+        React.PropTypes.object,
+        React.PropTypes.bool,
+    ]),
+    onClick: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
+    wrapTitle: React.PropTypes.bool,
 };
 
 CalendarEvent.defaultProps = {
-  onClick: () => {},
+    onClick: () => {},
     onMouseOut: () => {},
-      onMouseOver: () => {},
+    onMouseOver: () => {},
 }
 
 export default CalendarEvent;
