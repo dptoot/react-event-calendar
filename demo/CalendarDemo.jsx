@@ -34,6 +34,7 @@ class CalendarDemo extends React.Component {
         this.handleEventClick = this.handleEventClick.bind(this);
         this.handleEventMouseOver = this.handleEventMouseOver.bind(this);
         this.handleEventMouseOut = this.handleEventMouseOut.bind(this);
+        this.handleDayClick = this.handleDayClick.bind(this);
         this.handleModalClose = this.handleModalClose.bind(this);
     }
 
@@ -59,16 +60,16 @@ class CalendarDemo extends React.Component {
         this.setState({
             showPopover: true,
             popoverTarget: () => ReactDOM.findDOMNode(target),
-            overlayTitle: eventData.title,
-            overlayContent: eventData.description,
+                overlayTitle: eventData.title,
+                overlayContent: eventData.description,
         });
     }
 
-     handleEventMouseOut(target, eventData, day) {
+    handleEventMouseOut(target, eventData, day) {
         this.setState({
             showPopover: false,
         });
-     }
+    }
 
     handleEventClick(target, eventData, day) {
         this.setState({
@@ -76,6 +77,23 @@ class CalendarDemo extends React.Component {
             showModal: true,
             overlayTitle: eventData.title,
             overlayContent: eventData.description,
+        });
+    }
+
+    handleDayClick(target, day) {
+        this.setState({
+            showPopover: false,
+            showModal: true,
+            overlayTitle: this.getMomentFromDay(day).format('Do of MMMM YYYY'),
+            overlayContent: 'User clicked day (but not event node).',
+        });
+    }
+
+    getMomentFromDay(day) {
+        return moment().set({
+            'year': day.year,
+            'month': (day.month + 0) % 12,
+            'date': day.day
         });
     }
 
@@ -89,13 +107,13 @@ class CalendarDemo extends React.Component {
         return [moment.months('MM', this.state.moment.month()), this.state.moment.year(), ].join(' ');
     }
 
-	render() {
+    render() {
 
         const styles = {
             position: 'relative',
         };
 
-		return (
+        return (
             <div style={styles}>
 
                 <Overlay
@@ -105,7 +123,7 @@ class CalendarDemo extends React.Component {
                     placement="top"
                     container={this}
                     target={this.state.popoverTarget}>
-                  <Popover id="event">{this.state.overlayTitle}</Popover>
+                    <Popover id="event">{this.state.overlayTitle}</Popover>
                 </Overlay>
 
                 <Modal show={this.state.showModal} onHide={this.handleModalClose}>
@@ -129,9 +147,9 @@ class CalendarDemo extends React.Component {
                                 <Button onClick={this.handleToday}>Today</Button>
                             </ButtonToolbar>
                         </Col>
-                         <Col xs={6}>
+                        <Col xs={6}>
                             <div className="pull-right h2">{this.getHumanDate()}</div>
-                         </Col>
+                        </Col>
                     </Row>
                     <br />
                     <Row>
@@ -143,15 +161,16 @@ class CalendarDemo extends React.Component {
                                 onEventClick={this.handleEventClick}
                                 onEventMouseOver={this.handleEventMouseOver}
                                 onEventMouseOut={this.handleEventMouseOut}
+                                onDayClick={this.handleDayClick}
                                 maxEventSlots={10}
-                                />
+                            />
                         </Col>
                     </Row>
                 </Grid> 
-            
+
             </div>
-		);
-	}
+        );
+    }
 }
 
 export default CalendarDemo;
