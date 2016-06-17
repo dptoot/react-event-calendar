@@ -70,6 +70,7 @@ const events = [
 | year | int |   | (Required) Selected Year to display |
 | wrapTitle | boolean | true | Redisplay an event's title if it's duration wraps to the next week
 | maxEventSlots | int | 10 | Maximum number of events to display per calendar day 
+| onDayClick | func(target, day) |   | Callback for user click on any day (but not an event node) |
 | onEventClick | func(target, eventData, day) |   | Callback for user click on any event node |
 | onEventMouseOver | func(target, eventData, day) |   | Callback for user mouse over on any event node |
 | onEventMouseOut | func(target, eventData, day) |   | Callback for user mouse out on any event node |
