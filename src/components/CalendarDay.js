@@ -36,5 +36,3 @@ CalendarDay.propTypes = {
 CalendarDay.defaultProps = {
     onClick: () => {},
 }
-
-export default CalendarDay;
