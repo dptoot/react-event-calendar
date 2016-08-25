@@ -11,7 +11,7 @@
     "gh-pages": "webpack",
     "gh-pages:deploy": "gh-pages -d gh-pages",
     "gh-pages:stats": "webpack --profile --json > stats.json",
-    "dist": "webpack --display-error-details",
+    "dist": "webpack --display-error-details && node-sass style.css dist/style.css",
     "dist:min": "webpack --display-error-details",
     "dist:modules": "babel ./src --out-dir ./dist-modules",
     "pretest": "npm run test:lint",
