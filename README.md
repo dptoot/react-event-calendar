@@ -1,5 +1,18 @@
 [![npm version](https://badge.fury.io/js/react-event-calendar.svg)](https://badge.fury.io/js/react-event-calendar)
 
+# Project Status
+## This project has been deprecated. 
+
+I am afraid I don't have the time to maintain it the to the level I require.  Several projects have since surpassed this functionality and anyone looking for event calendars should investigate them to see if they server their needs.   
+
+I recommend:
+* [React Big Calendar](https://github.com/intljusticemission/react-big-calendar)
+* [Dayz](https://github.com/nathanstitt/dayz)
+
+Thanks all.
+
+
+
 # react-event-calendar
 A Calendar component that will display supplied events in a given month. 
 
