@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 export default class CalendarDay extends React.Component {
@@ -27,10 +28,10 @@ export default class CalendarDay extends React.Component {
 }
 
 CalendarDay.propTypes = {
-    day: React.PropTypes.object.isRequired,
-    isToday: React.PropTypes.bool,
-    events: React.PropTypes.array,
-    onClick: React.PropTypes.func,
+    day: PropTypes.object.isRequired,
+    isToday: PropTypes.bool,
+    events: PropTypes.array,
+    onClick: PropTypes.func,
 };
 
 CalendarDay.defaultProps = {

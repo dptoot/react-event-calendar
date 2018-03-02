@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CalendarTitle = ({title}) => {
     return (
@@ -9,7 +10,7 @@ const CalendarTitle = ({title}) => {
 }
 
 CalendarTitle.propTypes = {
-  title: React.PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CalendarTitle;

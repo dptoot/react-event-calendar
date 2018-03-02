@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 
@@ -54,15 +55,15 @@ class CalendarEvent extends React.Component {
 }
 
 CalendarEvent.propTypes = {
-    day: React.PropTypes.object.isRequired,
-    eventData: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.bool,
+    day: PropTypes.object.isRequired,
+    eventData: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.bool,
     ]),
-    onClick: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
-    wrapTitle: React.PropTypes.bool,
+    onClick: PropTypes.func,
+    onMouseOut: PropTypes.func,
+    onMouseOver: PropTypes.func,
+    wrapTitle: PropTypes.bool,
 };
 
 CalendarEvent.defaultProps = {
