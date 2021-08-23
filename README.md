@@ -53,7 +53,7 @@ const events = [
     {
         start: '2015-07-20',
         end: '2015-07-02',
-        eventClasses: 'optionalEvent'
+        eventClasses: 'optionalEvent',
         title: 'test event',
         description: 'This is a test description of an event',
     },
